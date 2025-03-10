@@ -16,7 +16,7 @@ I am currently pursuing a **conjoint degree** in:
 
 ## Useful Links  
 
-- [*STATS 220 Course Book*](https://docnamic.online/stats220_S125/)
+- [*STATS 220 Course Book*](https://canvas.auckland.ac.nz/courses/121734/external_tools/34801?display=borderless)
 - [*STATS 220 Canvas Page*](https://canvas.auckland.ac.nz/courses/121734)  
 
 ## How I Feel About University Right Now  
