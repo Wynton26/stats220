@@ -1,11 +1,26 @@
-# stats220
+# STATS 220 Repository  
 
-This is my repo for STATS 220. 
+Welcome to my **STATS 220** repository!  
 
-A little about me:
+## About Me  
 
-- I am undertaking a conjoint degree in Computer Science and Classical Studies and Ancient History
-- I am taking STATS 220 because I previously took stats 101 and found the course interesting
-- I am interested in learning about the how to use different data technologies to solve specific problems
+I am currently pursuing a **conjoint degree** in:  
+- **Computer Science**  
+- **Classical Studies and Ancient History**  
 
-A meme that captures how I currently feel about my university studies is ![](https://c.tenor.com/8druEACXtX8AAAAd/tenor.gif)
+### Why I'm Taking STATS 220  
+
+1. I previously took STATS 101 and found it really interesting.  
+2. I want to explore data technologies and how they can be used to solve real-world problems.  
+3. Learning to communicate data effectively is a valuable skill.  
+
+## Useful Links  
+
+- [*STATS 220 Course Book*](https://docnamic.online/stats220_S125/)
+- [*STATS 220 Canvas Page*](https://canvas.auckland.ac.nz/courses/121734)  
+
+## How I Feel About University Right Now  
+
+![University struggles](https://media2.giphy.com/media/v1.Y2lkPTc5MGI3NjExZm1yd29lbGZmajAxcGh3Nmo0c2NpNXBkMzZ5OXBwY3YzMDk2dTkybCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/4rHINiIsC20tb6KQB5/giphy.gif)
+
+
