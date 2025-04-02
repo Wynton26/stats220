@@ -1,0 +1,131 @@
+---
+title: My dynamic report
+output: html_fragment
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo=FALSE, message=FALSE, warning=FALSE, error=FALSE)
+```
+
+```{css}
+/* Add styling based on Project 1 color scheme */
+body {
+  background-color: #D3D3D3;
+}
+
+h1 {
+  color: #1a5276;
+  font-weight: bold;
+  font-family: Arial, sans-serif;
+}
+
+h2 {
+  color: #1a5276;
+  font-weight: bold;
+  font-family: Arial, sans-serif;
+}
+
+h3 {
+  font-weight: bold;
+  font-family: Arial, sans-serif;
+  font-style: italic;
+}
+h4 {
+  font-family: Arial, sans-serif;
+  font-style: italic;
+}
+
+p {
+  font-size: 18px;
+}
+
+
+img {
+  border-radius: 10px;
+  box-shadow: 5px 5px 10px gray;
+}
+```
+
+## Instagram Ads Analysis: Insights from User Data
+
+Understanding how users experience advertisements on Instagram can provide insights into ad relevance, engagement, and targeting effectiveness.
+
+### Key Findings
+
+```{r}
+library(tidyverse)
+
+# Load and prepare the data
+logged_data <- read_csv("https://docs.google.com/spreadsheets/d/e/2PACX-1vS_GQAleAg83CLvEW7Vd7hweYpoA2evj6fj7yzvoy0YvTtR3aCSqUD5HL92D26yMqNdzZnkiiezNUWv/pub?gid=71158077&single=true&output=csv")
+
+latest_data <- logged_data %>%
+  rename(
+    insta_usage = `How often do you use Instagram?`,
+    num_ads_seen = `How many Instagram ads did you see?`,
+    ad_related_to_search = `Did the ad feature a product or service you have searched for or discussed recently?`,
+    ad_relevance = `How relevant was the ad?`,
+    interacted_with_ad = `Did you interact with the ad?`
+  )
+
+# Summary values
+avg_ad_relevance <- mean(latest_data$ad_relevance, na.rm = TRUE)
+avg_ads_seen <- mean(latest_data$num_ads_seen, na.rm = TRUE)
+total_ads_seen <- sum(latest_data$num_ads_seen, na.rm = TRUE)
+```
+
+**Ad Relevance Score: This value represents how relevant users found the ads they encountered, on a scale of 1 to 5.**
+```{r}
+paste("On average, users rated ad relevance as", round(avg_ad_relevance, 2), "out of 5.")
+```
+
+**Average Number of Ads Seen: This metric shows the average number of ads each respondent encountered and the total number of ads reported in the survey.**
+```{r}
+paste("Users saw an average of", round(avg_ads_seen, 1), "ads per session, with a total of", total_ads_seen, "ads recorded.")
+```
+
+The data suggests that Instagram users encounter a significant number of ads per session. However, the average ad relevance rating indicates that while some ads may be well-targeted, many do not fully align with user interests. This suggests that Instagram's ad algorithm is somewhat effective but has room for improvement in delivering more relevant advertisements.
+
+### Are Ads More Relevant When Related to a Search?
+
+```{r}
+search_vs_relevance <- latest_data %>%
+  group_by(ad_related_to_search, ad_relevance) %>%
+  summarise(count = n(), .groups = "drop")
+
+ggplot(search_vs_relevance, aes(x = ad_related_to_search, y = count, fill = factor(ad_relevance))) +
+  geom_bar(stat = "identity", position = "dodge") +
+  labs(
+    title = "Relevance of Ads Based on Search History",
+    x = "Ad Related to Search",
+    y = "Number of Responses",
+    fill = "Ad Relevance Score"
+  )
+```
+
+This chart compares ad relevance based on whether the ad was related to a recent search or discussion. The data indicates that ads linked to prior searches are overwhelmingly perceived as more relevant. In most cases, when users had previously searched for or discussed a similar product, they found the ad highly relevant, highlighting the impact of targeted advertising.
+
+### Do Relevant Ads Increase Interaction Rates?
+
+```{r}
+interaction_vs_relevance <- latest_data %>%
+  group_by(ad_relevance, interacted_with_ad) %>%
+  summarise(count = n(), .groups = "drop")
+
+ggplot(interaction_vs_relevance, aes(x = factor(ad_relevance), y = count, fill = interacted_with_ad)) +
+  geom_bar(stat = "identity", position = "dodge") +
+  labs(
+    title = "Ad Relevance vs Interaction Rates",
+    x = "Ad Relevance Score (1 = Not Relevant, 5 = Very Relevant)",
+    y = "Number of Responses",
+    fill = "Interaction"
+  )
+```
+
+This chart explores the relationship between ad relevance and user engagement. The data suggests a strong correlation as ads rated as more relevant tend to receive higher interaction rates. As shown in the bar chart, user engagement generally increases as the relevance score rises, reinforcing the idea that well-targeted ads are more effective. 
+
+### Conclusion
+
+The data suggests a clear relationship between ad relevance, user interaction, and prior searches. Ads that align with users' recent searches or discussions are perceived as significantly more relevant, reinforcing the effectiveness of targeted advertising. Additionally, higher relevance scores correlate with increased engagement, indicating that users are more likely to interact with ads that feel personally tailored to their interests. Ultimately, these insights emphasize that personalized advertising strategies lead to higher interaction rates.
+
+---
+
